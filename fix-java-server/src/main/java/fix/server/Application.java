@@ -1,5 +1,7 @@
 package fix.server;
 
+import org.json.JSONObject;
+
 import quickfix.*;
 import quickfix.field.MDEntryPx;
 import quickfix.field.MDEntrySize;
@@ -52,30 +54,22 @@ public class Application extends MessageCracker implements quickfix.Application 
     public void onMessage(NewOrderSingle message, SessionID sessionID) throws FieldNotFound,
     UnsupportedMessageType, IncorrectTagValue {
         try {
-                String senderCompID = message.getHeader().getString(49);
-                String targetCompID = message.getHeader().getString(56);
-                String msgType = message.getHeader().getString(35);
-                String handlInst = message.getString(21);
-                String ordType = message.getString(40);
-                String clOrdID = message.getString(11);
-                String transactTime = message.getString(60);
-                String symbol = message.getString(55);
-                String side = message.getString(54);
-                String price = message.getString(44);
-                String orderQty = message.getString(38);
+            FixMessageJson orderJson = new FixMessageJson(
+                    message.getHeader().getString(49),
+                    message.getHeader().getString(56),
+                    message.getHeader().getString(35),
+                    message.getString(21),
+                    message.getString(40),
+                    message.getString(11),
+                    message.getString(60),
+                    message.getString(55),
+                    message.getString(54),
+                    message.getString(44),
+                    message.getString(38)
+            );
 
-                System.out.println("Received message:");
-                System.out.println("SenderCompID: " + senderCompID);
-                System.out.println("TargetCompID: " + targetCompID);
-                System.out.println("MsgType: " + msgType);
-                System.out.println("HandlInst: " + handlInst);
-                System.out.println("OrdType: " + ordType);
-                System.out.println("ClOrdID: " + clOrdID);
-                System.out.println("TransactTime: " + transactTime);
-                System.out.println("Symbol: " + symbol);
-                System.out.println("Side: " + side);
-                System.out.println("Price: " + price);
-                System.out.println("OrderQty: " + orderQty);
+            JSONObject jsonOrder = orderJson.toJson();
+            System.out.println("Received message: " + jsonOrder.toString());
         } catch (quickfix.FieldNotFound e) {
             e.printStackTrace();
         }
