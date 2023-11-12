@@ -21,7 +21,8 @@ public class FixMessageJson {
     public FixMessageJson(String senderCompID, String targetCompID, String msgType,
                      String handlInst, String ordType, String clOrdID,
                      String transactTime, String symbol, String side,
-                     String price, String orderQty) {
+                     String price, String orderQty, String origClOrdID,
+                     String execType, String cumQty) {
         this.senderCompID = senderCompID;
         this.targetCompID = targetCompID;
         this.msgType = msgType;

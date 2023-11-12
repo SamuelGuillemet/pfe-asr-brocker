@@ -20,6 +20,8 @@ import quickfix.fix42.NewOrderSingle;
 import quickfix.fix42.MarketDataIncrementalRefresh.NoMDEntries;
 
 public class Application extends MessageCracker implements quickfix.Application {
+    private static final String BOOTSTRAP_SERVERS = "localhost:9092";
+    private static final String TOPIC = "fix";
     private static SessionID sessionId;
 
     @Override
@@ -65,11 +67,15 @@ public class Application extends MessageCracker implements quickfix.Application 
                     message.getString(55),
                     message.getString(54),
                     message.getString(44),
-                    message.getString(38)
+                    message.getString(38),
+                    null,
+                    null,
+                    null
             );
 
             JSONObject jsonOrder = orderJson.toJson();
             System.out.println("Received message: " + jsonOrder.toString());
+            publishToKafka(jsonOrder);
         } catch (quickfix.FieldNotFound e) {
             e.printStackTrace();
         }
@@ -128,5 +134,15 @@ public class Application extends MessageCracker implements quickfix.Application 
             e.printStackTrace();
         }
     }
+
+    public void publishToKafka(JSONObject json) {
+        try {
+            KafkaProducerWrapper kafkaProducer = new KafkaProducerWrapper(BOOTSTRAP_SERVERS, TOPIC);
+            kafkaProducer.publishMessage(json.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 
 }
