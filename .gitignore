@@ -1,0 +1,6 @@
+*.log
+__pycache__
+**/*.class
+**/bin/
+**/target/
+fix-python-client/storage
