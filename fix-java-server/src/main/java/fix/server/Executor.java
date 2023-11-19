@@ -30,15 +30,15 @@ import static quickfix.Acceptor.SETTING_ACCEPTOR_TEMPLATE;
 import static quickfix.Acceptor.SETTING_SOCKET_ACCEPT_ADDRESS;
 import static quickfix.Acceptor.SETTING_SOCKET_ACCEPT_PORT;
 
-public class Main {
-    private final static Logger log = LoggerFactory.getLogger(Main.class);
+public class Executor {
+    private final static Logger log = LoggerFactory.getLogger(Executor.class);
     private final SocketAcceptor acceptor;
     private final Map<InetSocketAddress, List<TemplateMapping>> dynamicSessionMappings = new HashMap<>();
 
     private final JmxExporter jmxExporter;
     private final ObjectName connectorObjectName;
 
-    public Main(SessionSettings settings) throws ConfigError, FieldConvertError, JMException {
+    public Executor(SessionSettings settings) throws ConfigError, FieldConvertError, JMException {
         Application application = new Application();
         MessageStoreFactory messageStoreFactory = new FileStoreFactory(settings);
         LogFactory logFactory = new ScreenLogFactory(true, true, true);
@@ -58,10 +58,6 @@ public class Main {
     private void configureDynamicSessions(SessionSettings settings, Application application,
             MessageStoreFactory messageStoreFactory, LogFactory logFactory,
             MessageFactory messageFactory) throws ConfigError, FieldConvertError {
-        //
-        // If a session template is detected in the settings, then
-        // set up a dynamic session provider.
-        //
 
         Iterator<SessionID> sectionIterator = settings.sectionIterator();
         while (sectionIterator.hasNext()) {
@@ -117,7 +113,7 @@ public class Main {
         try {
             SessionSettings settings = new SessionSettings("config/executor_dynamic.cfg");
 
-            Main executor = new Main(settings);
+            Executor executor = new Executor(settings);
             executor.start();
             System.out.println("Fix server is listening...");
             System.in.read();
