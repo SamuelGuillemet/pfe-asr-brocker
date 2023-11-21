@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package fix.avro;
+package pfe_broker.avro;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -17,7 +17,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
   private static final long serialVersionUID = -5736402585144105847L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Trade\",\"namespace\":\"fix.avro\",\"fields\":[{\"name\":\"order\",\"type\":{\"type\":\"record\",\"name\":\"Order\",\"fields\":[{\"name\":\"username\",\"type\":\"string\"},{\"name\":\"symbol\",\"type\":\"string\"},{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"side\",\"type\":{\"type\":\"enum\",\"name\":\"Side\",\"symbols\":[\"BUY\",\"SELL\"]}}]}},{\"name\":\"symbol\",\"type\":\"string\"},{\"name\":\"price\",\"type\":\"double\"},{\"name\":\"quantity\",\"type\":\"int\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Trade\",\"namespace\":\"pfe_broker.avro\",\"fields\":[{\"name\":\"order\",\"type\":{\"type\":\"record\",\"name\":\"Order\",\"fields\":[{\"name\":\"username\",\"type\":\"string\"},{\"name\":\"symbol\",\"type\":\"string\"},{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"side\",\"type\":{\"type\":\"enum\",\"name\":\"Side\",\"symbols\":[\"BUY\",\"SELL\"]}}]}},{\"name\":\"symbol\",\"type\":\"string\"},{\"name\":\"price\",\"type\":\"double\"},{\"name\":\"quantity\",\"type\":\"int\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -73,7 +73,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
     return DECODER.decode(b);
   }
 
-  private fix.avro.Order order;
+  private pfe_broker.avro.Order order;
   private java.lang.CharSequence symbol;
   private double price;
   private int quantity;
@@ -92,7 +92,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
    * @param price The new value for price
    * @param quantity The new value for quantity
    */
-  public Trade(fix.avro.Order order, java.lang.CharSequence symbol, java.lang.Double price, java.lang.Integer quantity) {
+  public Trade(pfe_broker.avro.Order order, java.lang.CharSequence symbol, java.lang.Double price, java.lang.Integer quantity) {
     this.order = order;
     this.symbol = symbol;
     this.price = price;
@@ -122,7 +122,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: order = (fix.avro.Order)value$; break;
+    case 0: order = (pfe_broker.avro.Order)value$; break;
     case 1: symbol = (java.lang.CharSequence)value$; break;
     case 2: price = (java.lang.Double)value$; break;
     case 3: quantity = (java.lang.Integer)value$; break;
@@ -134,7 +134,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
    * Gets the value of the 'order' field.
    * @return The value of the 'order' field.
    */
-  public fix.avro.Order getOrder() {
+  public pfe_broker.avro.Order getOrder() {
     return order;
   }
 
@@ -143,7 +143,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
    * Sets the value of the 'order' field.
    * @param value the value to set.
    */
-  public void setOrder(fix.avro.Order value) {
+  public void setOrder(pfe_broker.avro.Order value) {
     this.order = value;
   }
 
@@ -202,8 +202,8 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
    * Creates a new Trade RecordBuilder.
    * @return A new Trade RecordBuilder
    */
-  public static fix.avro.Trade.Builder newBuilder() {
-    return new fix.avro.Trade.Builder();
+  public static pfe_broker.avro.Trade.Builder newBuilder() {
+    return new pfe_broker.avro.Trade.Builder();
   }
 
   /**
@@ -211,11 +211,11 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
    * @param other The existing builder to copy.
    * @return A new Trade RecordBuilder
    */
-  public static fix.avro.Trade.Builder newBuilder(fix.avro.Trade.Builder other) {
+  public static pfe_broker.avro.Trade.Builder newBuilder(pfe_broker.avro.Trade.Builder other) {
     if (other == null) {
-      return new fix.avro.Trade.Builder();
+      return new pfe_broker.avro.Trade.Builder();
     } else {
-      return new fix.avro.Trade.Builder(other);
+      return new pfe_broker.avro.Trade.Builder(other);
     }
   }
 
@@ -224,11 +224,11 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
    * @param other The existing instance to copy.
    * @return A new Trade RecordBuilder
    */
-  public static fix.avro.Trade.Builder newBuilder(fix.avro.Trade other) {
+  public static pfe_broker.avro.Trade.Builder newBuilder(pfe_broker.avro.Trade other) {
     if (other == null) {
-      return new fix.avro.Trade.Builder();
+      return new pfe_broker.avro.Trade.Builder();
     } else {
-      return new fix.avro.Trade.Builder(other);
+      return new pfe_broker.avro.Trade.Builder(other);
     }
   }
 
@@ -239,8 +239,8 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Trade>
     implements org.apache.avro.data.RecordBuilder<Trade> {
 
-    private fix.avro.Order order;
-    private fix.avro.Order.Builder orderBuilder;
+    private pfe_broker.avro.Order order;
+    private pfe_broker.avro.Order.Builder orderBuilder;
     private java.lang.CharSequence symbol;
     private double price;
     private int quantity;
@@ -254,14 +254,14 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(fix.avro.Trade.Builder other) {
+    private Builder(pfe_broker.avro.Trade.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.order)) {
         this.order = data().deepCopy(fields()[0].schema(), other.order);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
       if (other.hasOrderBuilder()) {
-        this.orderBuilder = fix.avro.Order.newBuilder(other.getOrderBuilder());
+        this.orderBuilder = pfe_broker.avro.Order.newBuilder(other.getOrderBuilder());
       }
       if (isValidValue(fields()[1], other.symbol)) {
         this.symbol = data().deepCopy(fields()[1].schema(), other.symbol);
@@ -281,7 +281,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
      * Creates a Builder by copying an existing Trade instance
      * @param other The existing instance to copy.
      */
-    private Builder(fix.avro.Trade other) {
+    private Builder(pfe_broker.avro.Trade other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.order)) {
         this.order = data().deepCopy(fields()[0].schema(), other.order);
@@ -306,7 +306,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
       * Gets the value of the 'order' field.
       * @return The value.
       */
-    public fix.avro.Order getOrder() {
+    public pfe_broker.avro.Order getOrder() {
       return order;
     }
 
@@ -316,7 +316,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'order'.
       * @return This builder.
       */
-    public fix.avro.Trade.Builder setOrder(fix.avro.Order value) {
+    public pfe_broker.avro.Trade.Builder setOrder(pfe_broker.avro.Order value) {
       validate(fields()[0], value);
       this.orderBuilder = null;
       this.order = value;
@@ -336,12 +336,12 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
      * Gets the Builder instance for the 'order' field and creates one if it doesn't exist yet.
      * @return This builder.
      */
-    public fix.avro.Order.Builder getOrderBuilder() {
+    public pfe_broker.avro.Order.Builder getOrderBuilder() {
       if (orderBuilder == null) {
         if (hasOrder()) {
-          setOrderBuilder(fix.avro.Order.newBuilder(order));
+          setOrderBuilder(pfe_broker.avro.Order.newBuilder(order));
         } else {
-          setOrderBuilder(fix.avro.Order.newBuilder());
+          setOrderBuilder(pfe_broker.avro.Order.newBuilder());
         }
       }
       return orderBuilder;
@@ -353,7 +353,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
      * @return This builder.
      */
 
-    public fix.avro.Trade.Builder setOrderBuilder(fix.avro.Order.Builder value) {
+    public pfe_broker.avro.Trade.Builder setOrderBuilder(pfe_broker.avro.Order.Builder value) {
       clearOrder();
       orderBuilder = value;
       return this;
@@ -371,7 +371,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
       * Clears the value of the 'order' field.
       * @return This builder.
       */
-    public fix.avro.Trade.Builder clearOrder() {
+    public pfe_broker.avro.Trade.Builder clearOrder() {
       order = null;
       orderBuilder = null;
       fieldSetFlags()[0] = false;
@@ -392,7 +392,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'symbol'.
       * @return This builder.
       */
-    public fix.avro.Trade.Builder setSymbol(java.lang.CharSequence value) {
+    public pfe_broker.avro.Trade.Builder setSymbol(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.symbol = value;
       fieldSetFlags()[1] = true;
@@ -412,7 +412,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
       * Clears the value of the 'symbol' field.
       * @return This builder.
       */
-    public fix.avro.Trade.Builder clearSymbol() {
+    public pfe_broker.avro.Trade.Builder clearSymbol() {
       symbol = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -432,7 +432,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'price'.
       * @return This builder.
       */
-    public fix.avro.Trade.Builder setPrice(double value) {
+    public pfe_broker.avro.Trade.Builder setPrice(double value) {
       validate(fields()[2], value);
       this.price = value;
       fieldSetFlags()[2] = true;
@@ -452,7 +452,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
       * Clears the value of the 'price' field.
       * @return This builder.
       */
-    public fix.avro.Trade.Builder clearPrice() {
+    public pfe_broker.avro.Trade.Builder clearPrice() {
       fieldSetFlags()[2] = false;
       return this;
     }
@@ -471,7 +471,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'quantity'.
       * @return This builder.
       */
-    public fix.avro.Trade.Builder setQuantity(int value) {
+    public pfe_broker.avro.Trade.Builder setQuantity(int value) {
       validate(fields()[3], value);
       this.quantity = value;
       fieldSetFlags()[3] = true;
@@ -491,7 +491,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
       * Clears the value of the 'quantity' field.
       * @return This builder.
       */
-    public fix.avro.Trade.Builder clearQuantity() {
+    public pfe_broker.avro.Trade.Builder clearQuantity() {
       fieldSetFlags()[3] = false;
       return this;
     }
@@ -509,7 +509,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
             throw e;
           }
         } else {
-          record.order = fieldSetFlags()[0] ? this.order : (fix.avro.Order) defaultValue(fields()[0]);
+          record.order = fieldSetFlags()[0] ? this.order : (pfe_broker.avro.Order) defaultValue(fields()[0]);
         }
         record.symbol = fieldSetFlags()[1] ? this.symbol : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.price = fieldSetFlags()[2] ? this.price : (java.lang.Double) defaultValue(fields()[2]);
@@ -562,7 +562,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
       if (this.order == null) {
-        this.order = new fix.avro.Order();
+        this.order = new pfe_broker.avro.Order();
       }
       this.order.customDecode(in);
 
@@ -577,7 +577,7 @@ public class Trade extends org.apache.avro.specific.SpecificRecordBase implement
         switch (fieldOrder[i].pos()) {
         case 0:
           if (this.order == null) {
-            this.order = new fix.avro.Order();
+            this.order = new pfe_broker.avro.Order();
           }
           this.order.customDecode(in);
           break;

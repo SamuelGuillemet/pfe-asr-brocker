@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package fix.avro;
+package pfe_broker.avro;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -17,7 +17,7 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
   private static final long serialVersionUID = -3777331159824955201L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"RejectedOrder\",\"namespace\":\"fix.avro\",\"fields\":[{\"name\":\"order\",\"type\":{\"type\":\"record\",\"name\":\"Order\",\"fields\":[{\"name\":\"username\",\"type\":\"string\"},{\"name\":\"symbol\",\"type\":\"string\"},{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"side\",\"type\":{\"type\":\"enum\",\"name\":\"Side\",\"symbols\":[\"BUY\",\"SELL\"]}}]}},{\"name\":\"reason\",\"type\":{\"type\":\"enum\",\"name\":\"OrderRejectReason\",\"symbols\":[\"BROKER_OPTION\",\"UNKNOWN_SYMBOL\",\"EXCHANGE_CLOSED\",\"ORDER_EXCEEDS_LIMIT\",\"TO_LATE_TO_ENTER\",\"UNKNOWN_ORDER\",\"DUPLICATE_ORDER\",\"DUPLICATE_VERBALYES\",\"STALE_ORDER\"]}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"RejectedOrder\",\"namespace\":\"pfe_broker.avro\",\"fields\":[{\"name\":\"order\",\"type\":{\"type\":\"record\",\"name\":\"Order\",\"fields\":[{\"name\":\"username\",\"type\":\"string\"},{\"name\":\"symbol\",\"type\":\"string\"},{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"side\",\"type\":{\"type\":\"enum\",\"name\":\"Side\",\"symbols\":[\"BUY\",\"SELL\"]}}]}},{\"name\":\"reason\",\"type\":{\"type\":\"enum\",\"name\":\"OrderRejectReason\",\"symbols\":[\"BROKER_OPTION\",\"UNKNOWN_SYMBOL\",\"EXCHANGE_CLOSED\",\"ORDER_EXCEEDS_LIMIT\",\"TO_LATE_TO_ENTER\",\"UNKNOWN_ORDER\",\"DUPLICATE_ORDER\",\"DUPLICATE_VERBALYES\",\"STALE_ORDER\"]}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -73,8 +73,8 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
     return DECODER.decode(b);
   }
 
-  private fix.avro.Order order;
-  private fix.avro.OrderRejectReason reason;
+  private pfe_broker.avro.Order order;
+  private pfe_broker.avro.OrderRejectReason reason;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -88,7 +88,7 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
    * @param order The new value for order
    * @param reason The new value for reason
    */
-  public RejectedOrder(fix.avro.Order order, fix.avro.OrderRejectReason reason) {
+  public RejectedOrder(pfe_broker.avro.Order order, pfe_broker.avro.OrderRejectReason reason) {
     this.order = order;
     this.reason = reason;
   }
@@ -114,8 +114,8 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: order = (fix.avro.Order)value$; break;
-    case 1: reason = (fix.avro.OrderRejectReason)value$; break;
+    case 0: order = (pfe_broker.avro.Order)value$; break;
+    case 1: reason = (pfe_broker.avro.OrderRejectReason)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -124,7 +124,7 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
    * Gets the value of the 'order' field.
    * @return The value of the 'order' field.
    */
-  public fix.avro.Order getOrder() {
+  public pfe_broker.avro.Order getOrder() {
     return order;
   }
 
@@ -133,7 +133,7 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
    * Sets the value of the 'order' field.
    * @param value the value to set.
    */
-  public void setOrder(fix.avro.Order value) {
+  public void setOrder(pfe_broker.avro.Order value) {
     this.order = value;
   }
 
@@ -141,7 +141,7 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
    * Gets the value of the 'reason' field.
    * @return The value of the 'reason' field.
    */
-  public fix.avro.OrderRejectReason getReason() {
+  public pfe_broker.avro.OrderRejectReason getReason() {
     return reason;
   }
 
@@ -150,7 +150,7 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
    * Sets the value of the 'reason' field.
    * @param value the value to set.
    */
-  public void setReason(fix.avro.OrderRejectReason value) {
+  public void setReason(pfe_broker.avro.OrderRejectReason value) {
     this.reason = value;
   }
 
@@ -158,8 +158,8 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
    * Creates a new RejectedOrder RecordBuilder.
    * @return A new RejectedOrder RecordBuilder
    */
-  public static fix.avro.RejectedOrder.Builder newBuilder() {
-    return new fix.avro.RejectedOrder.Builder();
+  public static pfe_broker.avro.RejectedOrder.Builder newBuilder() {
+    return new pfe_broker.avro.RejectedOrder.Builder();
   }
 
   /**
@@ -167,11 +167,11 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
    * @param other The existing builder to copy.
    * @return A new RejectedOrder RecordBuilder
    */
-  public static fix.avro.RejectedOrder.Builder newBuilder(fix.avro.RejectedOrder.Builder other) {
+  public static pfe_broker.avro.RejectedOrder.Builder newBuilder(pfe_broker.avro.RejectedOrder.Builder other) {
     if (other == null) {
-      return new fix.avro.RejectedOrder.Builder();
+      return new pfe_broker.avro.RejectedOrder.Builder();
     } else {
-      return new fix.avro.RejectedOrder.Builder(other);
+      return new pfe_broker.avro.RejectedOrder.Builder(other);
     }
   }
 
@@ -180,11 +180,11 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
    * @param other The existing instance to copy.
    * @return A new RejectedOrder RecordBuilder
    */
-  public static fix.avro.RejectedOrder.Builder newBuilder(fix.avro.RejectedOrder other) {
+  public static pfe_broker.avro.RejectedOrder.Builder newBuilder(pfe_broker.avro.RejectedOrder other) {
     if (other == null) {
-      return new fix.avro.RejectedOrder.Builder();
+      return new pfe_broker.avro.RejectedOrder.Builder();
     } else {
-      return new fix.avro.RejectedOrder.Builder(other);
+      return new pfe_broker.avro.RejectedOrder.Builder(other);
     }
   }
 
@@ -195,9 +195,9 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<RejectedOrder>
     implements org.apache.avro.data.RecordBuilder<RejectedOrder> {
 
-    private fix.avro.Order order;
-    private fix.avro.Order.Builder orderBuilder;
-    private fix.avro.OrderRejectReason reason;
+    private pfe_broker.avro.Order order;
+    private pfe_broker.avro.Order.Builder orderBuilder;
+    private pfe_broker.avro.OrderRejectReason reason;
 
     /** Creates a new Builder */
     private Builder() {
@@ -208,14 +208,14 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(fix.avro.RejectedOrder.Builder other) {
+    private Builder(pfe_broker.avro.RejectedOrder.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.order)) {
         this.order = data().deepCopy(fields()[0].schema(), other.order);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
       if (other.hasOrderBuilder()) {
-        this.orderBuilder = fix.avro.Order.newBuilder(other.getOrderBuilder());
+        this.orderBuilder = pfe_broker.avro.Order.newBuilder(other.getOrderBuilder());
       }
       if (isValidValue(fields()[1], other.reason)) {
         this.reason = data().deepCopy(fields()[1].schema(), other.reason);
@@ -227,7 +227,7 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
      * Creates a Builder by copying an existing RejectedOrder instance
      * @param other The existing instance to copy.
      */
-    private Builder(fix.avro.RejectedOrder other) {
+    private Builder(pfe_broker.avro.RejectedOrder other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.order)) {
         this.order = data().deepCopy(fields()[0].schema(), other.order);
@@ -244,7 +244,7 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
       * Gets the value of the 'order' field.
       * @return The value.
       */
-    public fix.avro.Order getOrder() {
+    public pfe_broker.avro.Order getOrder() {
       return order;
     }
 
@@ -254,7 +254,7 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
       * @param value The value of 'order'.
       * @return This builder.
       */
-    public fix.avro.RejectedOrder.Builder setOrder(fix.avro.Order value) {
+    public pfe_broker.avro.RejectedOrder.Builder setOrder(pfe_broker.avro.Order value) {
       validate(fields()[0], value);
       this.orderBuilder = null;
       this.order = value;
@@ -274,12 +274,12 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
      * Gets the Builder instance for the 'order' field and creates one if it doesn't exist yet.
      * @return This builder.
      */
-    public fix.avro.Order.Builder getOrderBuilder() {
+    public pfe_broker.avro.Order.Builder getOrderBuilder() {
       if (orderBuilder == null) {
         if (hasOrder()) {
-          setOrderBuilder(fix.avro.Order.newBuilder(order));
+          setOrderBuilder(pfe_broker.avro.Order.newBuilder(order));
         } else {
-          setOrderBuilder(fix.avro.Order.newBuilder());
+          setOrderBuilder(pfe_broker.avro.Order.newBuilder());
         }
       }
       return orderBuilder;
@@ -291,7 +291,7 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
      * @return This builder.
      */
 
-    public fix.avro.RejectedOrder.Builder setOrderBuilder(fix.avro.Order.Builder value) {
+    public pfe_broker.avro.RejectedOrder.Builder setOrderBuilder(pfe_broker.avro.Order.Builder value) {
       clearOrder();
       orderBuilder = value;
       return this;
@@ -309,7 +309,7 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
       * Clears the value of the 'order' field.
       * @return This builder.
       */
-    public fix.avro.RejectedOrder.Builder clearOrder() {
+    public pfe_broker.avro.RejectedOrder.Builder clearOrder() {
       order = null;
       orderBuilder = null;
       fieldSetFlags()[0] = false;
@@ -320,7 +320,7 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
       * Gets the value of the 'reason' field.
       * @return The value.
       */
-    public fix.avro.OrderRejectReason getReason() {
+    public pfe_broker.avro.OrderRejectReason getReason() {
       return reason;
     }
 
@@ -330,7 +330,7 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
       * @param value The value of 'reason'.
       * @return This builder.
       */
-    public fix.avro.RejectedOrder.Builder setReason(fix.avro.OrderRejectReason value) {
+    public pfe_broker.avro.RejectedOrder.Builder setReason(pfe_broker.avro.OrderRejectReason value) {
       validate(fields()[1], value);
       this.reason = value;
       fieldSetFlags()[1] = true;
@@ -350,7 +350,7 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
       * Clears the value of the 'reason' field.
       * @return This builder.
       */
-    public fix.avro.RejectedOrder.Builder clearReason() {
+    public pfe_broker.avro.RejectedOrder.Builder clearReason() {
       reason = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -369,9 +369,9 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
             throw e;
           }
         } else {
-          record.order = fieldSetFlags()[0] ? this.order : (fix.avro.Order) defaultValue(fields()[0]);
+          record.order = fieldSetFlags()[0] ? this.order : (pfe_broker.avro.Order) defaultValue(fields()[0]);
         }
-        record.reason = fieldSetFlags()[1] ? this.reason : (fix.avro.OrderRejectReason) defaultValue(fields()[1]);
+        record.reason = fieldSetFlags()[1] ? this.reason : (pfe_broker.avro.OrderRejectReason) defaultValue(fields()[1]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -416,24 +416,24 @@ public class RejectedOrder extends org.apache.avro.specific.SpecificRecordBase i
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
       if (this.order == null) {
-        this.order = new fix.avro.Order();
+        this.order = new pfe_broker.avro.Order();
       }
       this.order.customDecode(in);
 
-      this.reason = fix.avro.OrderRejectReason.values()[in.readEnum()];
+      this.reason = pfe_broker.avro.OrderRejectReason.values()[in.readEnum()];
 
     } else {
       for (int i = 0; i < 2; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           if (this.order == null) {
-            this.order = new fix.avro.Order();
+            this.order = new pfe_broker.avro.Order();
           }
           this.order.customDecode(in);
           break;
 
         case 1:
-          this.reason = fix.avro.OrderRejectReason.values()[in.readEnum()];
+          this.reason = pfe_broker.avro.OrderRejectReason.values()[in.readEnum()];
           break;
 
         default:

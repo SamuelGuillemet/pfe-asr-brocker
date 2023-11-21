@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package fix.avro;
+package pfe_broker.avro;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -17,7 +17,7 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
   private static final long serialVersionUID = -7647647996371877075L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MarketData\",\"namespace\":\"fix.avro\",\"fields\":[{\"name\":\"open\",\"type\":\"float\"},{\"name\":\"high\",\"type\":\"float\"},{\"name\":\"low\",\"type\":\"float\"},{\"name\":\"close\",\"type\":\"float\"},{\"name\":\"volume\",\"type\":\"int\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MarketData\",\"namespace\":\"pfe_broker.avro\",\"fields\":[{\"name\":\"open\",\"type\":\"float\"},{\"name\":\"high\",\"type\":\"float\"},{\"name\":\"low\",\"type\":\"float\"},{\"name\":\"close\",\"type\":\"float\"},{\"name\":\"volume\",\"type\":\"int\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -224,8 +224,8 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
    * Creates a new MarketData RecordBuilder.
    * @return A new MarketData RecordBuilder
    */
-  public static fix.avro.MarketData.Builder newBuilder() {
-    return new fix.avro.MarketData.Builder();
+  public static pfe_broker.avro.MarketData.Builder newBuilder() {
+    return new pfe_broker.avro.MarketData.Builder();
   }
 
   /**
@@ -233,11 +233,11 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
    * @param other The existing builder to copy.
    * @return A new MarketData RecordBuilder
    */
-  public static fix.avro.MarketData.Builder newBuilder(fix.avro.MarketData.Builder other) {
+  public static pfe_broker.avro.MarketData.Builder newBuilder(pfe_broker.avro.MarketData.Builder other) {
     if (other == null) {
-      return new fix.avro.MarketData.Builder();
+      return new pfe_broker.avro.MarketData.Builder();
     } else {
-      return new fix.avro.MarketData.Builder(other);
+      return new pfe_broker.avro.MarketData.Builder(other);
     }
   }
 
@@ -246,11 +246,11 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
    * @param other The existing instance to copy.
    * @return A new MarketData RecordBuilder
    */
-  public static fix.avro.MarketData.Builder newBuilder(fix.avro.MarketData other) {
+  public static pfe_broker.avro.MarketData.Builder newBuilder(pfe_broker.avro.MarketData other) {
     if (other == null) {
-      return new fix.avro.MarketData.Builder();
+      return new pfe_broker.avro.MarketData.Builder();
     } else {
-      return new fix.avro.MarketData.Builder(other);
+      return new pfe_broker.avro.MarketData.Builder(other);
     }
   }
 
@@ -276,7 +276,7 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(fix.avro.MarketData.Builder other) {
+    private Builder(pfe_broker.avro.MarketData.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.open)) {
         this.open = data().deepCopy(fields()[0].schema(), other.open);
@@ -304,7 +304,7 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
      * Creates a Builder by copying an existing MarketData instance
      * @param other The existing instance to copy.
      */
-    private Builder(fix.avro.MarketData other) {
+    private Builder(pfe_broker.avro.MarketData other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.open)) {
         this.open = data().deepCopy(fields()[0].schema(), other.open);
@@ -342,7 +342,7 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
       * @param value The value of 'open'.
       * @return This builder.
       */
-    public fix.avro.MarketData.Builder setOpen(float value) {
+    public pfe_broker.avro.MarketData.Builder setOpen(float value) {
       validate(fields()[0], value);
       this.open = value;
       fieldSetFlags()[0] = true;
@@ -362,7 +362,7 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
       * Clears the value of the 'open' field.
       * @return This builder.
       */
-    public fix.avro.MarketData.Builder clearOpen() {
+    public pfe_broker.avro.MarketData.Builder clearOpen() {
       fieldSetFlags()[0] = false;
       return this;
     }
@@ -381,7 +381,7 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
       * @param value The value of 'high'.
       * @return This builder.
       */
-    public fix.avro.MarketData.Builder setHigh(float value) {
+    public pfe_broker.avro.MarketData.Builder setHigh(float value) {
       validate(fields()[1], value);
       this.high = value;
       fieldSetFlags()[1] = true;
@@ -401,7 +401,7 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
       * Clears the value of the 'high' field.
       * @return This builder.
       */
-    public fix.avro.MarketData.Builder clearHigh() {
+    public pfe_broker.avro.MarketData.Builder clearHigh() {
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -420,7 +420,7 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
       * @param value The value of 'low'.
       * @return This builder.
       */
-    public fix.avro.MarketData.Builder setLow(float value) {
+    public pfe_broker.avro.MarketData.Builder setLow(float value) {
       validate(fields()[2], value);
       this.low = value;
       fieldSetFlags()[2] = true;
@@ -440,7 +440,7 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
       * Clears the value of the 'low' field.
       * @return This builder.
       */
-    public fix.avro.MarketData.Builder clearLow() {
+    public pfe_broker.avro.MarketData.Builder clearLow() {
       fieldSetFlags()[2] = false;
       return this;
     }
@@ -459,7 +459,7 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
       * @param value The value of 'close'.
       * @return This builder.
       */
-    public fix.avro.MarketData.Builder setClose(float value) {
+    public pfe_broker.avro.MarketData.Builder setClose(float value) {
       validate(fields()[3], value);
       this.close = value;
       fieldSetFlags()[3] = true;
@@ -479,7 +479,7 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
       * Clears the value of the 'close' field.
       * @return This builder.
       */
-    public fix.avro.MarketData.Builder clearClose() {
+    public pfe_broker.avro.MarketData.Builder clearClose() {
       fieldSetFlags()[3] = false;
       return this;
     }
@@ -498,7 +498,7 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
       * @param value The value of 'volume'.
       * @return This builder.
       */
-    public fix.avro.MarketData.Builder setVolume(int value) {
+    public pfe_broker.avro.MarketData.Builder setVolume(int value) {
       validate(fields()[4], value);
       this.volume = value;
       fieldSetFlags()[4] = true;
@@ -518,7 +518,7 @@ public class MarketData extends org.apache.avro.specific.SpecificRecordBase impl
       * Clears the value of the 'volume' field.
       * @return This builder.
       */
-    public fix.avro.MarketData.Builder clearVolume() {
+    public pfe_broker.avro.MarketData.Builder clearVolume() {
       fieldSetFlags()[4] = false;
       return this;
     }
