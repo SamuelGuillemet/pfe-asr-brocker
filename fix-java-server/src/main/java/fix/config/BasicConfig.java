@@ -13,5 +13,5 @@ public class BasicConfig {
     public static final String BOOTSTRAP_SERVERS = "localhost:9092";
     public static final String FIX_SERVER_ID = "SERVER";
 
-    public static final String KAFKA_RELAY_CONFIG_PATH = "relay.cfg";
+    public static final String KAFKA_RELAY_CONFIG_PATH = "config/relay.cfg";
 }
