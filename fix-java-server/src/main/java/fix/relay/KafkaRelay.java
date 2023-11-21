@@ -16,14 +16,16 @@ public class KafkaRelay {
             MessageFactory messageFactory = new DefaultMessageFactory();
 
             // Start the QuickFIXJ initiator
-            SocketInitiator initiator = new SocketInitiator(application, messageStoreFactory, settings, logFactory, messageFactory);
+            SocketInitiator initiator = new SocketInitiator(application, messageStoreFactory, settings, logFactory,
+                    messageFactory);
             initiator.start();
 
             System.out.println("QuickFIXJ relay is running...");
 
             // Start the consumer
-            List<String> topics = Arrays.asList(BasicConfig.ACCEPTED_ORDERS_TOPIC_NAME, BasicConfig.REJECTED_ORDERS_TOPIC_NAME,BasicConfig.ACCEPTED_TRADES_TOPIC_NAME);
-            KafkaConsumerWrapper consumer = new KafkaConsumerWrapper(BasicConfig.BOOTSTRAP_SERVERS, topics, application, "relay");
+            List<String> topics = Arrays.asList(BasicConfig.ACCEPTED_TRADES_TOPIC_NAME);
+            KafkaConsumerWrapper consumer = new KafkaConsumerWrapper(BasicConfig.BOOTSTRAP_SERVERS, topics, application,
+                    "relay");
             consumer.startConsuming();
             initiator.stop();
 
