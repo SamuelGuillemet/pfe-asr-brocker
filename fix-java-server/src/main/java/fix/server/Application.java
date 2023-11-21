@@ -1,21 +1,41 @@
 package fix.server;
 
-import org.json.JSONObject;
-
-import com.fasterxml.jackson.databind.introspect.TypeResolutionContext.Basic;
-
-import quickfix.*;
-import quickfix.field.*;
+import fix.config.BasicConfig;
+import pfe_broker.avro.Order;
+import quickfix.DoNotSend;
+import quickfix.FieldNotFound;
+import quickfix.IncorrectDataFormat;
+import quickfix.IncorrectTagValue;
+import quickfix.Message;
+import quickfix.MessageCracker;
+import quickfix.RejectLogon;
+import quickfix.Session;
+import quickfix.SessionID;
+import quickfix.SessionNotFound;
+import quickfix.UnsupportedMessageType;
+import quickfix.field.MDEntryPx;
+import quickfix.field.MDEntrySize;
+import quickfix.field.MDEntryType;
+import quickfix.field.MDReqID;
+import quickfix.field.NoRelatedSym;
+import quickfix.field.OrderQty;
+import quickfix.field.SenderCompID;
+import quickfix.field.Side;
+import quickfix.field.Symbol;
+import quickfix.field.TargetCompID;
 import quickfix.fix42.ExecutionReport;
 import quickfix.fix42.MarketDataRequest;
 import quickfix.fix42.MarketDataSnapshotFullRefresh;
 import quickfix.fix42.NewOrderSingle;
-import fix.avro.Order;
-import fix.config.BasicConfig;
 
 public class Application extends MessageCracker implements quickfix.Application {
     private int m_orderID = 0;
     private int m_execID = 0;
+    private KafkaProducerWrapper kafkaProducer;
+
+    public Application() {
+        this.kafkaProducer = new KafkaProducerWrapper(BasicConfig.BOOTSTRAP_SERVERS, BasicConfig.ORDERS_TOPIC_NAME);
+    }
 
     @Override
     public void onCreate(SessionID sessionId) {
@@ -34,7 +54,8 @@ public class Application extends MessageCracker implements quickfix.Application 
     }
 
     @Override
-    public void fromAdmin(Message message, SessionID sessionId) throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, RejectLogon {
+    public void fromAdmin(Message message, SessionID sessionId)
+            throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, RejectLogon {
     }
 
     @Override
@@ -42,23 +63,24 @@ public class Application extends MessageCracker implements quickfix.Application 
     }
 
     @Override
-    public void fromApp(Message message, SessionID sessionId) throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, UnsupportedMessageType {
-        crack(message,sessionId);
+    public void fromApp(Message message, SessionID sessionId)
+            throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, UnsupportedMessageType {
+        crack(message, sessionId);
     }
 
     public void onMessage(NewOrderSingle message, SessionID sessionID) throws FieldNotFound,
-    UnsupportedMessageType, IncorrectTagValue {
+            UnsupportedMessageType, IncorrectTagValue {
         try {
             System.out.println("Received new Single Order");
-            fix.avro.Side side;
-            if(message.getString(Side.FIELD)=="1"){
-                side = fix.avro.Side.BUY;
-            }else{
-                side = fix.avro.Side.SELL;
+            pfe_broker.avro.Side side;
+            if (message.getString(Side.FIELD).charAt(0) == quickfix.field.Side.BUY) {
+                side = pfe_broker.avro.Side.BUY;
+            } else {
+                side = pfe_broker.avro.Side.SELL;
             }
-            fix.avro.Order avroOrder = new Order(message.getHeader().getString(SenderCompID.FIELD), message.getString(Symbol.FIELD), message.getInt(OrderQty.FIELD), side);
-            publishToKafka(avroOrder);
-            
+            pfe_broker.avro.Order avroOrder = new Order(message.getHeader().getString(SenderCompID.FIELD),
+                    message.getString(Symbol.FIELD), message.getInt(OrderQty.FIELD), side);
+            publishToKafka(avroOrder, m_orderID++);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,15 +98,14 @@ public class Application extends MessageCracker implements quickfix.Application 
     public void onMessage(ExecutionReport message, SessionID sessionID) {
         try {
             String senderCompID = "SERVER";
-            String targetCompID = "CLIENT";
+            String targetCompID = "user1";
 
             sessionID = new SessionID("FIX.4.2", senderCompID, targetCompID);
-            Session.sendToTarget(message,sessionID);
+            Session.sendToTarget(message, sessionID);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     private void sendMarketDataSnapshot(MarketDataRequest message) throws FieldNotFound {
         MarketDataRequest.NoRelatedSym noRelatedSyms = new MarketDataRequest.NoRelatedSym();
@@ -101,7 +122,7 @@ public class Application extends MessageCracker implements quickfix.Application 
             fixMD.setString(Symbol.FIELD, symbol);
 
             double symbolPrice = 0.0;
-            int symbolVolume = 0; 
+            int symbolVolume = 0;
 
             if (symbol.equals("GOOGL")) {
                 symbolPrice = 123.45;
@@ -123,7 +144,7 @@ public class Application extends MessageCracker implements quickfix.Application 
         String targetCompId = message.getHeader().getString(TargetCompID.FIELD);
         fixMD.getHeader().setString(SenderCompID.FIELD, targetCompId);
         fixMD.getHeader().setString(TargetCompID.FIELD, senderCompId);
-        
+
         try {
             Session.sendToTarget(fixMD, targetCompId, senderCompId);
         } catch (SessionNotFound e) {
@@ -131,13 +152,11 @@ public class Application extends MessageCracker implements quickfix.Application 
         }
     }
 
-
-    private void publishToKafka(Order order) {
+    private void publishToKafka(Order order, Integer key) {
         try {
-            System.out.println("Publishing new order "+order.toString()+" to topic: "+BasicConfig.ORDERS_TOPIC_NAME);
-            KafkaProducerWrapper kafkaProducer = new KafkaProducerWrapper(BasicConfig.BOOTSTRAP_SERVERS, BasicConfig.ORDERS_TOPIC_NAME);
-            kafkaProducer.publishMessage(order);
-            System.out.println("Successfully published new order "+order.toString()+" to topic: "+BasicConfig.ORDERS_TOPIC_NAME);
+            System.out.println(
+                    "Publishing new order " + order.toString() + " to topic: " + BasicConfig.ORDERS_TOPIC_NAME);
+            kafkaProducer.publishMessage(order, key);
         } catch (Exception e) {
             e.printStackTrace();
         }
