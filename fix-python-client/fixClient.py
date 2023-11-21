@@ -62,6 +62,35 @@ class ClientApplication(fix.Application):
                             depth['bids'] = []
                         depth['bids'].append(order)
                 print("Received a full market data snapshot: %s" % (depth))
+            elif msgType.getValue() == fix.MsgType_ExecutionReport:
+                symbol = fix.Symbol()
+                side = fix.Side()
+                orderQty = fix.OrderQty()
+                ordStatusField = fix.OrdStatus()
+
+                message.getField(symbol)
+                message.getField(side)
+                message.getField(orderQty)
+                message.getField(ordStatusField)
+
+                if ordStatusField.getValue() == fix.OrdStatus_NEW:
+                    print("Received Execution Report: Accept Order")
+                elif ordStatusField.getValue() == fix.OrdStatus_REJECTED:
+                    rejectReason = fix.OrdRejReason()
+                    message.getField(rejectReason)
+                    print(f"Received Execution Report: Reject Order, Reason: {rejectReason.getValue()}")
+                elif ordStatusField.getValue() == fix.OrdStatus_FILLED:
+                    print("Received Execution Report: Order Filled")
+
+                
+                
+                print(f"Symbol: {symbol.getValue()}")
+                print(f"Side: {side.getValue()}")
+                print(f"Quantity: {orderQty.getValue()}")
+
+                
+
+
             else:
                 pass
         except fix.FieldNotFound as e:
@@ -134,9 +163,12 @@ def main():
     sleep(1)
     symbols_to_request = ['GOOGL', 'AAPL']
     application.request_market_data(symbols_to_request,sender_comp_id,target_comp_id)
-    sleep(1)
+    # for i in range(10):
+    #     sleep(10)
+    #     application.place_buy_order(sender_comp_id,target_comp_id)
+    sleep(10)
     application.place_buy_order(sender_comp_id,target_comp_id)
-    sleep(1)
+    sleep(1000)
     initiator.stop()
 
 if __name__ == "__main__":
