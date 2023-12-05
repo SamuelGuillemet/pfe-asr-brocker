@@ -24,6 +24,8 @@ class ClientApplication(fix.Application):
 
     def toAdmin(self, message, sessionID):
         print("Sending to Admin %s" % message)
+        message.setField(553,"user1")
+        message.setField(554,"password")
         return
 
     def fromAdmin(self, message, sessionID):

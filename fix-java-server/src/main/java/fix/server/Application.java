@@ -54,8 +54,17 @@ public class Application extends MessageCracker implements quickfix.Application 
     }
 
     @Override
-    public void fromAdmin(Message message, SessionID sessionId)
-            throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, RejectLogon {
+    public void fromAdmin(Message message, SessionID sessionId) throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, RejectLogon {
+            String username = message.getString(553);
+            String password = message.getString(554);
+            //checkCredentials(username, password)
+            if (true) {
+                System.out.println("Valid credentials for: " + username);
+            } else {
+                System.out.println("Logon rejected for: " + username);
+                throw new RejectLogon("Invalid username or password");
+            }
+
     }
 
     @Override
